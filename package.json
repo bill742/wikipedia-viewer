@@ -1,0 +1,29 @@
+{
+  "name": "wikipedia-viewer",
+  "version": "1.0.0",
+  "description": "An app to search for articles on Wikipedia.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bill742@github.com/bill742/wikipedia-viewer.git"
+  },
+  "author": "Bill Dean",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bill742/wikipedia-viewer/issues"
+  },
+  "homepage": "https://github.com/bill742/wikipedia-viewer#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.0"
+  }
+}

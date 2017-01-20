@@ -1,0 +1,1 @@
+function searchArticle(){var e=search.value;""===e?console.log("please enter a search term"):console.log(e)}
