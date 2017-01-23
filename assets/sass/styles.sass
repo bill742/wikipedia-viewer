@@ -3,9 +3,18 @@ body
 
 h1
   font-size: 26px
+  padding: 20px 0
+  text-align: center
+
+// Search
+
+.search-container
+    margin: 0 auto
+    display: block
+    width: 214px
 
 .search-box
-    margin-right: 8px 
+    margin-right: 8px
     padding: 3px 4px
     float: left
 
@@ -13,3 +22,37 @@ img.search-btn
     width: 25px
     height: 25px
     cursor: pointer
+
+
+// Output
+// .hatnote
+//     display: none
+//
+// .infobox
+//     display: none
+//
+// .references
+//     display: none
+
+.output
+    padding: 30px
+    width: 80%
+    margin: 20px auto
+    display: block
+    border: 1px solid #000
+
+.output p
+    display: none
+
+.output p:first-child
+    display: block
+
+.output p.read-more
+    display: block
+
+    a
+        color: #000
+        text-decoration: underline
+
+        &:hover
+            text-decoration: none

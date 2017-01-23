@@ -19,6 +19,9 @@ function searchArticle () {
             var markup = data.parse.text["*"];
             var blurb = $('<div></div>').html(markup);
 
+            // Clear out any existing links
+            $('.read-more').remove();
+
             // remove links as they will not work
             blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
 
@@ -27,13 +30,21 @@ function searchArticle () {
 
             // remove cite error
             blurb.find('.mw-ext-cite-error').remove();
-            $('#article').html($(blurb).find('p'));
+            $('#output').html($(blurb).find('p'));
 
-            document.getElementById('output').innerHTML = blurb[0].innerHTML;
+            $('#output p:first-child').after('<p class="read-more"><a href="https://en.wikipedia.org/wiki/' + inputVal + '" target="_blank">Read More</a></p>');
 
         },
         error: function (errorMessage) {
+            console.log('No article found');
         }
     });
   }
 }
+
+// Allow search to work by pressing Enter
+document.getElementById("search").onkeypress = function(event){
+  if (event.keyCode == 13 || event.which == 13){
+      searchArticle();
+  }
+};

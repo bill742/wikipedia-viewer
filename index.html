@@ -8,12 +8,14 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <h1>Wikipedia Viewer</h1>
+  <h1>Search for an article on Wikipedia</h1>
 
-  <input type="text" name="search" id="search" class="search-box" value="">
-  <img src="images/magnifying-glass.svg" class="search-btn" onclick="searchArticle(search);">
+  <div class="search-container">
+      <input type="text" name="search" id="search" class="search-box" placeholder="Search..." value="">
+      <img src="images/magnifying-glass.svg" class="search-btn" onclick="searchArticle(search);">
+  </div>
 
-  <div id ="output"> </div>
+  <div id ="output" class="output"> </div>
 
   <script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
