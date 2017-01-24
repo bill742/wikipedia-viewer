@@ -32,6 +32,7 @@ function searchArticle () {
             blurb.find('.mw-ext-cite-error').remove();
             $('#output').html($(blurb).find('p'));
 
+            $('.output').addClass('output-visible');
             $('#output p:first-child').after('<p class="read-more"><a href="https://en.wikipedia.org/wiki/' + inputVal + '" target="_blank">Read More</a></p>');
 
         },
