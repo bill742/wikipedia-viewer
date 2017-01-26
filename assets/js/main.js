@@ -1,14 +1,18 @@
 function searchArticle () {
     var inputVal = search.value;
+    inputVal = inputVal.replace(/\s+/g, '%20');
+
+    var output="";
 
     if (inputVal === ""){
-        console.log('please enter a search term');
+      $('.search-container').after("<p class='error'>Please enter a search query</p>");
     } else {
+      $('p.error').hide();
+      
       var wikiapi = "https://en.wikipedia.org/w/api.php?action=query&titles=" + inputVal + "&prop=revisions&rvprop=content&format=json";
+      console.log(wikiapi);
 
-      var output="";
-
-    $.ajax({
+      $.ajax({
         type: "GET",
         url: "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + inputVal + "&callback=?",
         contentType: "application/json; charset=utf-8",
