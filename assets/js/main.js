@@ -8,9 +8,9 @@ function searchArticle () {
       $('.search-container').after("<p class='error'>Please enter a search query</p>");
     } else {
       $('p.error').hide();
-      
-      var wikiapi = "https://en.wikipedia.org/w/api.php?action=query&titles=" + inputVal + "&prop=revisions&rvprop=content&format=json";
-      console.log(wikiapi);
+
+      // var wikiapi = "https://en.wikipedia.org/w/api.php?action=query&titles=" + inputVal + "&prop=revisions&rvprop=content&format=json";
+      // console.log(wikiapi);
 
       $.ajax({
         type: "GET",
@@ -52,4 +52,32 @@ document.getElementById("search").onkeypress = function(event){
   if (event.keyCode == 13 || event.which == 13){
       searchArticle();
   }
+};
+
+// Search for random article
+document.getElementById("random").onclick = function(){
+
+  $.ajax({
+    type: "GET",
+    url: "https://en.wikipedia.org/w/api.php?/w/api.php?action=query&format=json&list=random&rnlimit=5",
+    contentType: "application/json; charset=utf-8",
+    async: false,
+    dataType: "json",
+    success: function (data, textStatus, jqXHR) {
+      console.log('hi!');
+
+      // var markup = data.parse.text["*"];
+      // var blurb = $('<div></div>').html(markup);
+      //
+      // console.log(markup);
+      //
+      // $('#output').html($(blurb).find('p'));
+      //
+      // $('.output').addClass('output-visible');
+    },
+    error: function (errorMessage) {
+        console.log('No article found');
+    }
+  });
+
 };
