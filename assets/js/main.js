@@ -1,8 +1,8 @@
+var output="";
+
 function searchArticle () {
     var inputVal = search.value;
     inputVal = inputVal.replace(/\s+/g, '%20');
-
-    var output="";
 
     if (inputVal === ""){
       $('.search-container').after("<p class='error'>Please enter a search query</p>");
@@ -59,21 +59,28 @@ document.getElementById("random").onclick = function(){
 
   $.ajax({
     type: "GET",
-    url: "https://en.wikipedia.org/w/api.php?/w/api.php?action=query&format=json&list=random&rnlimit=5",
+    url: "http://en.wikipedia.org/w/api.php?action=query&format=json&rnlimit=1&list=random&callback=?",
     contentType: "application/json; charset=utf-8",
     async: false,
     dataType: "json",
     success: function (data, textStatus, jqXHR) {
-      console.log('hi!');
+      console.log(data);
 
-      // var markup = data.parse.text["*"];
-      // var blurb = $('<div></div>').html(markup);
+    //   var markup = data.parse.text["*"];
+    //   var blurb = $('<div></div>').html(markup);
       //
-      // console.log(markup);
+    //   console.log(markup);
       //
-      // $('#output').html($(blurb).find('p'));
+    //   $('#output').html($(blurb).find('p'));
       //
-      // $('.output').addClass('output-visible');
+      var articleTitle = data.query.random[0].title;
+       var articleId = data.query.random[0].id;
+
+      $('.output').addClass('output-visible');
+      output = '<p class="some-class">' + articleTitle + '</p>';
+      output += '<a class="read-more" href="https://en.wikipedia.org/w/api.php?action=query&prop=info&pageids=' +  articleId + '&inprop=url">Read More</a>';
+
+      document.getElementById('output').innerHTML = output;
     },
     error: function (errorMessage) {
         console.log('No article found');
