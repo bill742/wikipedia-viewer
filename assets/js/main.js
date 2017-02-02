@@ -10,7 +10,6 @@ function searchArticle () {
       $('p.error').hide();
 
       // var wikiapi = "https://en.wikipedia.org/w/api.php?action=query&titles=" + inputVal + "&prop=revisions&rvprop=content&format=json";
-      // console.log(wikiapi);
 
       $.ajax({
         type: "GET",
@@ -19,6 +18,7 @@ function searchArticle () {
         async: false,
         dataType: "json",
         success: function (data, textStatus, jqXHR) {
+            var title = data.parse.title;
 
             var markup = data.parse.text["*"];
             var blurb = $('<div></div>').html(markup);
@@ -38,6 +38,7 @@ function searchArticle () {
 
             $('.output').addClass('output-visible');
             $('#output p:first-child').after('<p class="read-more"><a href="https://en.wikipedia.org/wiki/' + inputVal + '" target="_blank">Read More</a></p>');
+            $('#output p:first-child').css('display', 'block').before('<h2>' + title + '</h2>');
 
         },
         error: function (errorMessage) {
@@ -59,28 +60,36 @@ document.getElementById("random").onclick = function(){
 
   $.ajax({
     type: "GET",
-    url: "http://en.wikipedia.org/w/api.php?action=query&format=json&rnlimit=1&list=random&callback=?",
+    url: "http://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json&rnlimit=1&callback=?",
     contentType: "application/json; charset=utf-8",
     async: false,
     dataType: "json",
     success: function (data, textStatus, jqXHR) {
-      console.log(data);
+    // console.log(data);
+    var obj = data.query.pages;
 
-    //   var markup = data.parse.text["*"];
-    //   var blurb = $('<div></div>').html(markup);
-      //
-    //   console.log(markup);
-      //
-    //   $('#output').html($(blurb).find('p'));
-      //
-      var articleTitle = data.query.random[0].title;
-       var articleId = data.query.random[0].id;
+    //   console.log(obj);
 
-      $('.output').addClass('output-visible');
-      output = '<p class="some-class">' + articleTitle + '</p>';
-      output += '<a class="read-more" href="https://en.wikipedia.org/w/api.php?action=query&prop=info&pageids=' +  articleId + '&inprop=url">Read More</a>';
+    var first;
+    for (var i in obj) {
+        if (obj.hasOwnProperty(i) && typeof(i) !== 'function') {
+            first = obj[i];
+            break;
+        }
+    }
+    // console.log(first);
+    var articleTitle = first.title;
+    var extract = first.extract;
+    var copy = $(extract).find("p");
+    var firstP = copy.prevObject[0].innerHTML;
+    var articleId = first.pageid;
 
-      document.getElementById('output').innerHTML = output;
+    $('.output').addClass('output-visible');
+        output = '<h2>' + articleTitle + '</h2>';
+        output += '<div class="some-class">' + firstP + '</div>';
+        output += '<p class="read-more"><a href="http://en.wikipedia.org/wiki?curid=' +  articleId + '" target="_blank">Read More</a></p>';
+
+        document.getElementById('output').innerHTML = output;
     },
     error: function (errorMessage) {
         console.log('No article found');
