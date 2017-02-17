@@ -6,10 +6,12 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer');
     concatCss = require('gulp-concat-css');
     cleanCSS = require('gulp-clean-css');
+    coffee = require('gulp-coffee');
 
 var sassSources,
     cssSources,
-    jsSources;
+    jsSources,
+    coffeeSources;
 
 sassSources = [
   'assets/sass/*.sass'
@@ -21,6 +23,10 @@ cssSources = [
 
 jsSources = [
   'assets/js/*.js'
+];
+
+coffeeSources = [
+  'assets/coffee/*.coffee'
 ];
 
 // Compile Sass files
@@ -57,6 +63,12 @@ gulp.task('js', function() {
       }));
 });
 
+gulp.task('coffee', function() {
+  gulp.src(coffeeSources)
+    .pipe(coffee({bare: true}))
+    .pipe(gulp.dest('js'));
+});
+
 gulp.task('html', function(){
 	gulp.src('*.html')
     .pipe(browserSync.reload({
@@ -64,11 +76,12 @@ gulp.task('html', function(){
     }));
 });
 
-gulp.task('watch', ['browserSync', 'js', 'sass', 'css'], function(){
+gulp.task('watch', ['browserSync', 'js', 'sass', 'css', 'coffee'], function(){
   gulp.watch(sassSources, ['sass']);
   gulp.watch(cssSources, ['css']);
   gulp.watch('*.html', ['html']);
   gulp.watch(jsSources, ['js']);
+  gulp.watch(coffeeSources, ['coffee']);
 });
 
 gulp.task('browserSync', function() {
@@ -79,4 +92,4 @@ gulp.task('browserSync', function() {
   });
 });
 
-gulp.task('default', ['sass', 'css', 'js', 'html', 'watch']);
+gulp.task('default', ['sass', 'css', 'js', 'coffee', 'html', 'watch']);
