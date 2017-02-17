@@ -50,12 +50,14 @@ searchArticle = ->
             document.getElementById('output').innerHTML = output
 
 # Allow search to work by pressing Enter
-document.getElementById("search").onkeypress = (event) ->
-    # if event.keyCode == 13 or event.which == 13 then searchArticle()
-    if event.keyCode == 13 or event.which == 13 then console.log 'pressed'
+# document.getElementById("search").onkeypress = (event) ->
+$('#search').keypress ->
+    if event.keyCode == 13 or event.which == 13 then searchArticle()
+    # if event.keyCode == 13 or event.which == 13 then console.log 'pressed'
 
 # Search for random article
-document.getElementById("random").onclick ->
+# document.getElementById("random").onclick ->
+$('#random').click ->
     $.ajax
       type: "GET"
       url: "http://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json&rnlimit=1&callback=?"

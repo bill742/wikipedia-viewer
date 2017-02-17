@@ -38,13 +38,13 @@ searchArticle = function() {
   }
 };
 
-document.getElementById("search").onkeypress = function(event) {
+$('#search').keypress(function() {
   if (event.keyCode === 13 || event.which === 13) {
-    return console.log('pressed');
+    return searchArticle();
   }
-};
+});
 
-document.getElementById("random").onclick(function() {
+$('#random').click(function() {
   return $.ajax({
     type: "GET",
     url: "http://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json&rnlimit=1&callback=?",
