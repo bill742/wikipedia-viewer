@@ -10,24 +10,24 @@ searchArticle = function() {
     return $('.search-container').after("<p class='error'>Please enter a search query</p>");
   } else {
     $('p.error').hide();
+    $('#output').empty();
     return $.ajax({
       type: "GET",
-      url: "https://en.wikipedia.org/w/api.php?action=query&format=json&generator=search&gsrnamespace=0&gsrsearch=" + inputVal + "&gsrlimit=5&callback=?",
+      url: "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages|extracts&generator=search&formatversion=1&pilimit=50&exsentences=1&exlimit=20&exintro=1&explaintext=1&gsrnamespace=0&gsrsearch=" + inputVal + "&gsrlimit=10&callback=?",
       contentType: "application/json; charset=utf-8",
       async: false,
       dataType: "json",
       success: function(data, textStatus, jqXHR) {
-        var i, j, len, pages, results, title;
+        var pageArr, pages;
         console.log(data);
-        title = data.query.title;
         pages = data.query.pages;
+        pageArr = Object.keys(pages).map(function(key) {
+          return pages[key];
+        });
         $('.read-more').remove();
-        results = [];
-        for (j = 0, len = pages.length; j < len; j++) {
-          i = pages[j];
-          results.push(console.log(pages[i].title));
-        }
-        return results;
+        return pageArr.forEach(function(i) {
+          return document.getElementById('output').innerHTML += "<div class='box'><h2>" + i.title + "</h2><p>" + i.extract + "</p><p class='read-more'><a href='https://en.wikipedia.org/?curid=" + i.pageid + "' target='_blank'>Read More</a></p></div>";
+        });
       },
       error: function(errorMessage) {
         $('.output').addClass('output-visible');
@@ -53,7 +53,9 @@ $('#random').click(function() {
     dataType: "json",
     success: function(data, textStatus, jqXHR) {
       var articleId, articleTitle, copy, extract, first, firstP, i, j, len, obj;
+      console.log(data);
       obj = data.query.pages;
+      console.log(obj);
       first;
       for (j = 0, len = obj.length; j < len; j++) {
         i = obj[j];

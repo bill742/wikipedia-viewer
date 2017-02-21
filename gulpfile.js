@@ -80,6 +80,7 @@ gulp.task('watch', ['browserSync', 'js', 'sass', 'css', 'coffee'], function(){
   gulp.watch(sassSources, ['sass']);
   gulp.watch(cssSources, ['css']);
   gulp.watch('*.html', ['html']);
+  gulp.watch('js/*.js', ['js']);
   gulp.watch(jsSources, ['js']);
   gulp.watch(coffeeSources, ['coffee']);
 });
