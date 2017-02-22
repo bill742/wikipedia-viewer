@@ -8,13 +8,15 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <h1>Search for an article on Wikipedia</h1>
+  <h1>Wikipedia Viewer</h1>
+  <h2>Search for an article on Wikipedia</h2>
 
   <div class="search-container">
       <input type="text" name="search" id="search" class="search-box" placeholder="Search..." value="">
       <img src="images/magnifying-glass.svg" class="search-btn" onclick="searchArticle(search);">
-      <div id="random" class="random">Give me a Random Article</div>
   </div>
+
+  <div id="random" class="random">Give me a Random Article</div>
 
   <div id ="output" class="output"> </div>
 
@@ -22,6 +24,6 @@
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
-  <script src="js/c_scripts.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>

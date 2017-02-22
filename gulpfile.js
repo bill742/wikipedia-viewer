@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 
 var sassSources,
     cssSources,
-    jsSources,
+    // jsSources,
     coffeeSources;
 
 sassSources = [
@@ -21,9 +21,9 @@ cssSources = [
   'assets/css/*.css'
 ];
 
-jsSources = [
-  'assets/js/*.js'
-];
+// jsSources = [
+//   'assets/js/*.js'
+// ];
 
 coffeeSources = [
   'assets/coffee/*.coffee'
@@ -53,20 +53,24 @@ gulp.task('css', function(){
     }));
 });
 
-gulp.task('js', function() {
-  gulp.src(jsSources)
-      .pipe(concat('scripts.js'))
-      .pipe(uglify())
-      .pipe(gulp.dest('js'))
-      .pipe(browserSync.reload({
-        stream: true
-      }));
-});
+// gulp.task('js', function() {
+//   gulp.src(jsSources)
+//       .pipe(concat('scripts.js'))
+//       .pipe(uglify())
+//       .pipe(gulp.dest('js'))
+//       .pipe(browserSync.reload({
+//         stream: true
+//       }));
+// });
 
 gulp.task('coffee', function() {
   gulp.src(coffeeSources)
     .pipe(coffee({bare: true}))
-    .pipe(gulp.dest('js'));
+    // .pipe(uglify())
+    .pipe(gulp.dest('js'))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 gulp.task('html', function(){
@@ -76,13 +80,12 @@ gulp.task('html', function(){
     }));
 });
 
-gulp.task('watch', ['browserSync', 'js', 'sass', 'css', 'coffee'], function(){
+gulp.task('watch', ['browserSync', 'sass', 'css', 'coffee'], function(){
   gulp.watch(sassSources, ['sass']);
   gulp.watch(cssSources, ['css']);
-  gulp.watch('*.html', ['html']);
-  gulp.watch('js/*.js', ['js']);
-  gulp.watch(jsSources, ['js']);
   gulp.watch(coffeeSources, ['coffee']);
+  gulp.watch('*.html', ['html']);
+  gulp.watch('js/*.js', ['coffee']);
 });
 
 gulp.task('browserSync', function() {
@@ -93,4 +96,4 @@ gulp.task('browserSync', function() {
   });
 });
 
-gulp.task('default', ['sass', 'css', 'js', 'coffee', 'html', 'watch']);
+gulp.task('default', ['sass', 'css', 'coffee', 'html', 'watch']);
