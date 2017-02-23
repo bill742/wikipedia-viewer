@@ -21,10 +21,6 @@ cssSources = [
   'assets/css/*.css'
 ];
 
-// jsSources = [
-//   'assets/js/*.js'
-// ];
-
 coffeeSources = [
   'assets/coffee/*.coffee'
 ];
@@ -53,20 +49,10 @@ gulp.task('css', function(){
     }));
 });
 
-// gulp.task('js', function() {
-//   gulp.src(jsSources)
-//       .pipe(concat('scripts.js'))
-//       .pipe(uglify())
-//       .pipe(gulp.dest('js'))
-//       .pipe(browserSync.reload({
-//         stream: true
-//       }));
-// });
-
 gulp.task('coffee', function() {
   gulp.src(coffeeSources)
     .pipe(coffee({bare: true}))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('js'))
     .pipe(browserSync.reload({
       stream: true
