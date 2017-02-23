@@ -13,10 +13,9 @@
 
   <div class="search-container">
       <input type="text" name="search" id="search" class="search-box" placeholder="Search..." value="">
-      <img src="images/magnifying-glass.svg" class="search-btn" onclick="searchArticle(search);">
+      <button type="button" name="button" class="search-btn">Search <img src="images/magnifying-glass.svg" onclick="searchArticle(search);" class="icon"></button>
+      <div id="random" class="random">Give me a Random Article <img src="images/random.svg" alt="Give me a Random Article" class="random-btn"></div>
   </div>
-
-  <div id="random" class="random">Give me a Random Article</div>
 
   <div id ="output" class="output"> </div>
 

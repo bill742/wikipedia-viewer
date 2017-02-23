@@ -25,7 +25,7 @@ h2
 .search-container
   display: block
   margin: 0 auto
-  width: 25%
+  width: 50%
 
 @keyframes searchExpand
   0%
@@ -37,7 +37,7 @@ h2
 
 .search-box
   float: left
-  width: 80%
+  width: 50%
   margin-right: 2%
   padding: 6px
   font-size: 1.1em
@@ -48,25 +48,47 @@ h2
   animation-timing-function: ease
   animation-duration: 1s
 
-.search-btn
-  width: 35px
-  height: 35px
+@mixin btn
+  border: 1px solid $black
+  border-radius: 4px
+  background-color: $blue
+  font-weight: bold
+  font-size: 1em
+  line-height: 33px
+  color: $white
+  text-transform: uppercase
   cursor: pointer
 
+@mixin svg
+  width: 25px
+  height: 25px
+  margin-left: 10px
+
+.search-btn
+  @include btn
+
+  .icon
+      @include svg
+
 .random
-  width: 25%
-  margin: 40px auto
-  padding: 10px 0
-  color: $black
-  font-weight: bold
-  text-align: center
-  border: 1px solid $black
-  border-radius: 8px
-  background-color: $blue
-  cursor: pointer
+  @include btn
+  // width: 40%
+  // margin: 40px auto
+  display: inline-block
+  padding: 0 10px
+  // color: $black
+
+  // text-align: center
+
 
   &:hover
     color: $white
+
+  .random-btn
+    @include svg
+
+    &:hover
+      color: $white
 
 .error
   color: $red
