@@ -25,6 +25,8 @@ searchArticle = ->
 
             $('.read-more').remove()
 
+            $('.output').removeClass('output-visible');
+
             pageArr.forEach (i) ->
                 document.getElementById('output').innerHTML += "<div class='box'><h3>" + i.title + "</h3><p>" + i.extract + "</p><p class='read-more'><a href='https://en.wikipedia.org/?curid=" + i.pageid + "' target='_blank'>Read More</a></p></div>"
 
