@@ -10,7 +10,6 @@ var gulp = require('gulp'),
 
 var sassSources,
     cssSources,
-    // jsSources,
     coffeeSources;
 
 sassSources = [

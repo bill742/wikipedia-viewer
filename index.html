@@ -8,16 +8,20 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <h1>Wikipedia Viewer</h1>
-  <h2>Search for an article on Wikipedia</h2>
+  <div class="wrapper">
+      <header>
+          <h1>Wikipedia Viewer</h1>
+          <h2>Search for an article on Wikipedia</h2>
+      </header>
 
-  <div class="search-container">
-      <input type="text" name="search" id="search" class="search-box" placeholder="Search..." value="">
-      <button type="button" name="button" class="search-btn">Search <img src="images/magnifying-glass.svg" onclick="searchArticle(search);" class="icon"></button>
-      <div id="random" class="random">Give me a Random Article <img src="images/random.svg" alt="Give me a Random Article" class="random-btn"></div>
+      <div class="search-container">
+          <input type="text" name="search" id="search" class="search-box" placeholder="Search..." value="">
+          <button type="button" name="button" class="search-btn" onclick="searchArticle(search);">Search <img src="images/magnifying-glass.svg" class="icon"></button>
+          <div id="random" class="random">Random Search <img src="images/random.svg" alt="Give me a Random Article" class="random-btn"></div>
+      </div>
+
+      <div id ="output" class="output"> </div>
   </div>
-
-  <div id ="output" class="output"> </div>
 
   <script
   src="https://code.jquery.com/jquery-2.2.4.min.js"

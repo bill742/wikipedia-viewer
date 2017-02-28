@@ -5,10 +5,9 @@ searchArticle = ->
     inputVal = inputVal.replace(/\s+/g, '%20')
 
     if inputVal == ""
-        $('.search-container').after("<p class='error'>Please enter a search query</p>")
+        $('.search-container').before("<p class='error'>Please enter a search query</p>")
     else
       $('p.error').hide()
-
       $('#output').empty()
 
       $.ajax
@@ -18,9 +17,12 @@ searchArticle = ->
         async: false
         dataType: "json"
         success: (data, textStatus, jqXHR) ->
-            # console.log(data);
+            console.log(data);
 
             pages = data.query.pages
+
+            # console.log ('error') if (pages.val()
+
             pageArr = Object.keys(pages).map (key)-> pages[key]
 
             $('.read-more').remove()
@@ -28,7 +30,7 @@ searchArticle = ->
             $('.output').removeClass('output-visible');
 
             pageArr.forEach (i) ->
-                document.getElementById('output').innerHTML += "<div class='box'><h3>" + i.title + "</h3><p>" + i.extract + "</p><p class='read-more'><a href='https://en.wikipedia.org/?curid=" + i.pageid + "' target='_blank'>Read More</a></p></div>"
+                document.getElementById('output').innerHTML += "<div class='box'><h3>" + i.title + "</h3><p>" + i.extract + "</p><p class='read-more'><a href='https://en.wikipedia.org/?curid=" + i.pageid + "' target='_blank'>Read More &gt;&gt;</a></p></div>"
 
         error: (errorMessage) ->
             $('.output').addClass('output-visible')
@@ -65,8 +67,8 @@ $('#random').click ->
 
           $('.output').addClass('output-visible');
           output = '<h3>' + articleTitle + '</h3>'
-          output += '<div class="some-class">' + firstP + '</div>'
-          output += '<p class="read-more"><a href="http://en.wikipedia.org/wiki?curid=' +  articleId + '" target="_blank">Read More</a></p>'
+          output += '<p>' + firstP + '</p>'
+          output += '<p class="read-more"><a href="http://en.wikipedia.org/wiki?curid=' +  articleId + '" target="_blank">Read More &gt;&gt;</a></p>'
           document.getElementById('output').innerHTML = output;
           error: (errorMessage) ->
               console.log('No article found')
