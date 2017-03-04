@@ -4,68 +4,16 @@ $_22: 1.375em
 $black: #000
 $blue: #a7c3ef
 $white: #fff
+$white-transparent: rgba(255, 255, 255, .8)
+$white-more-transparent: rgba(255, 255, 255, .3)
 $red: #ff606e
 $grey: #aeadad
 
-body
-    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif
-    font-size: 16px
-    line-height: 1
-    background-image: url(/images/wikipedia-logo.png)
-    background-repeat: no-repeat
-    background-position: center 160px
-    background-attachment: fixed
+// Responsive Widths
+$mobile: 600px
+$tablet: 1000px
 
-.wrapper
-    background: rgba(255, 255, 255, 0.8)
-    position: absolute
-    width: 100%
-    height: auto
-    min-height: 100%
-
-header
-    background-color: $black
-
-    h1
-      padding: 30px 0
-      font-size: $_26
-      font-weight: bold
-      text-align: center
-      color: $white
-
-    h2
-      padding-bottom: 30px
-      font-size: $_22
-      text-align: center
-      color: $white
-
-// Search
-.search-container
-  display: block
-  margin: 50px auto
-  width: 50%
-
-@keyframes searchExpand
-  0%
-    width: 0
-
-  100%
-    width: 480px
-
-
-.search-box
-  float: left
-  width: 50%
-  margin-right: 2%
-  padding: 6px 12px
-  font-size: 1.1em
-  border: 1px solid $grey
-  border-radius: 8px
-  animation-name: searchExpand
-  animation-iteration-count: 1
-  animation-timing-function: ease
-  animation-duration: 1s
-
+// Mixins
 @mixin btn
   border: 1px solid $black
   border-radius: 4px
@@ -87,63 +35,128 @@ header
   margin-left: 10px
   float: right
 
-.search-btn
-  @include btn
-
-  .icon
-      @include svg
-
-.random
-  @include btn
-  display: inline-block
-
-  .random-btn
-    @include svg
-
-    &:hover
-      color: $white
-
-.error
-  position: absolute
-  padding: 20px 0
-  width: 100%
-  color: $red
-  font-weight: 700
-  text-align: center
-
-// Output
-
 @mixin output
   padding: 30px
-  background-color: rgba(255,255,255,0.3)
+  background-color: $white-more-transparent
   border: 1px solid $black
 
 
-.output-visible
-  @include output
-  display: block
-  width: 80%
-  margin: 20px auto
+body
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif
+  font-size: 16px
+  line-height: 1
+  background-image: url('/images/wikipedia-logo.png')
+  background-repeat: no-repeat
+  background-position: center 160px
+  background-attachment: fixed
 
-.output
-  .box
-    @include output
-    width: 80%
-    margin: 0 auto 10px
+.wrapper
+  background: $white-transparent
+  position: absolute
+  width: 100%
+  height: auto
+  min-height: 100%
 
-  h3
-    padding-bottom: 5px
-    font-weight: bold
+  header
+    background-color: $black
 
-  p
-    padding: 5px 0
-    line-height: 150%
+    h1
+      padding: 30px 0
+      font-size: $_26
+      font-weight: bold
+      text-align: center
+      color: $white
 
-    &:first-child
-      display: block
+    h2
+      padding-bottom: 30px
+      font-size: $_22
+      text-align: center
+      color: $white
 
-  .read-more
+  .search-container
     display: block
+    margin: 50px auto
+    width: 70%
+
+    @media (min-width: $mobile)
+      width: 90%
+
+    @keyframes searchExpand
+      0%
+        width: 0
+
+      100%
+        width: 448px
+
+
+    .search-box
+      float: left
+      width: 50%
+      padding: 6px 12px
+      font-size: 1.1em
+      border: 1px solid $grey
+      border-radius: 8px
+      animation-name: searchExpand
+      animation-iteration-count: 1
+      animation-timing-function: ease
+      animation-duration: 1s
+
+    .search-btn
+      @include btn
+
+      .icon
+        @include svg
+
+    .random
+      @include btn
+      display: inline-block
+
+    .random-btn
+      @include svg
+
+      &:hover
+        color: $white
+
+    .clear
+      position: relative
+      left: -20px
+      cursor: pointer
+      color: $grey
+
+    .error
+      position: absolute
+      padding: 20px 0
+      width: 100%
+      color: $red
+      font-weight: 700
+      text-align: center
+
+    // Output
+  .output-visible
+    @include output
+    display: block
+    width: 80%
+    margin: 20px auto
+
+  .output
+    .box
+      @include output
+      width: 80%
+      margin: 0 auto 10px
+
+    h3
+      padding-bottom: 5px
+      font-weight: bold
+
+    p
+      padding: 5px 0
+      line-height: 150%
+
+      &:first-child
+        display: block
+
+    .read-more
+      display: block
 
     a
       color: $red
