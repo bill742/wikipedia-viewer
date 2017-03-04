@@ -52,6 +52,7 @@ gulp.task('coffee', function() {
   gulp.src(coffeeSources)
     .pipe(coffee({bare: true}))
     .pipe(uglify())
+    .pipe(concat('scripts.js'))
     .pipe(gulp.dest('js'))
     .pipe(browserSync.reload({
       stream: true
