@@ -17,20 +17,25 @@ searchArticle = ->
         async: false
         dataType: "json"
         success: (data, textStatus, jqXHR) ->
-            console.log(data);
+            # console.log(data);
 
-            pages = data.query.pages
+            if data.hasOwnProperty('query')
 
-            # console.log ('error') if (pages.val()
+              pages = data.query.pages
 
-            pageArr = Object.keys(pages).map (key)-> pages[key]
+              pageArr = Object.keys(pages).map (key)-> pages[key]
 
-            $('.read-more').remove()
+              $('.read-more').remove()
 
-            $('.output').removeClass('output-visible');
+              $('.output').removeClass('output-visible');
 
-            pageArr.forEach (i) ->
-                document.getElementById('output').innerHTML += "<div class='box'><h3>" + i.title + "</h3><p>" + i.extract + "</p><p class='read-more'><a href='https://en.wikipedia.org/?curid=" + i.pageid + "' target='_blank'>Read More &gt;&gt;</a></p></div>"
+              pageArr.forEach (i) ->
+                  document.getElementById('output').innerHTML += "<div class='box'><h3>" + i.title + "</h3><p>" + i.extract + "</p><p class='read-more'><a href='https://en.wikipedia.org/?curid=" + i.pageid + "' target='_blank'>Read More &gt;&gt;</a></p></div>"
+
+            else
+              $('.output').addClass('output-visible')
+              output = "<p>No results found.</p>"
+              document.getElementById('output').innerHTML = output
 
         error: (errorMessage) ->
             $('.output').addClass('output-visible')
@@ -43,5 +48,4 @@ $('#search').keypress ->
 
 # Clear search box
 $('.clear').click ->
-  console.log ('clear')
   $('#search').val('')
