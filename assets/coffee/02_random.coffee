@@ -22,6 +22,8 @@ $('.random').click ->
 
           articleId = result.pageid
 
+          $('#search').val('')
+
           $('.output').addClass('output-visible');
           output = '<div class="box"><h3>' + articleTitle + '</h3>'
           output += '<p>' + firstP + '</p>'
