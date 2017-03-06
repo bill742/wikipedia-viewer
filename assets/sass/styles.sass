@@ -11,7 +11,7 @@ $grey: #aeadad
 
 // Responsive Widths
 $mobile: 600px
-$tablet: 1200px
+$full: 1200px
 
 // Mixins
 @mixin btn
@@ -89,6 +89,9 @@ body
     @media (min-width: $mobile)
       width: 90%
 
+    @media (min-width: $full)
+      width: 80%
+
     @keyframes searchExpand
       0%
         width: 0
@@ -112,8 +115,8 @@ body
         float: left
         width: 65%
 
-      @media (min-width: $tablet)
-        width: 60%
+      @media (min-width: $full)
+        width: 50%
 
 
     .search-btn
@@ -122,6 +125,13 @@ body
 
       @media (min-width: $mobile)
         display: inline-block
+        margin: 0
+        width: 28%
+        float: right
+
+      @media (min-width: $full)
+        width: 22%
+        float: none
         margin: 0 0 0 10px
 
 
@@ -132,10 +142,11 @@ body
       @include btn
       margin: 20px auto 0
 
-      @media (min-width: $tablet)
+      @media (min-width: $full)
         display: inline-block
         float: right
         margin: 0
+        width: 22%
 
 
     .random-btn
@@ -163,6 +174,10 @@ body
   .output
     width: 90%
     margin: 20px auto
+
+    @media (min-width: $full)
+      width: 80%
+
 
     .box
       @include output
