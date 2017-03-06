@@ -26,7 +26,6 @@ searchArticle = ->
               pageArr = Object.keys(pages).map (key)-> pages[key]
 
               $('.read-more').remove()
-
               $('.output').removeClass('output-visible');
 
               pageArr.forEach (i) ->
