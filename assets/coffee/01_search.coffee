@@ -34,12 +34,12 @@ searchArticle = ->
 
             else
               $('.output').addClass('output-visible')
-              output = "<p>No results found.</p>"
+              output = "<p class='box'>No results found.</p>"
               document.getElementById('output').innerHTML = output
 
         error: (errorMessage) ->
             $('.output').addClass('output-visible')
-            output = "<p>No results found.</p>"
+            output = "<p class='box'>No results found.</p>"
             document.getElementById('output').innerHTML = output
 
 # Allow search to work by pressing Enter

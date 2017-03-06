@@ -23,9 +23,9 @@ $('.random').click ->
           articleId = result.pageid
 
           $('.output').addClass('output-visible');
-          output = '<h3>' + articleTitle + '</h3>'
+          output = '<div class="box"><h3>' + articleTitle + '</h3>'
           output += '<p>' + firstP + '</p>'
-          output += '<p class="read-more"><a href="http://en.wikipedia.org/wiki?curid=' +  articleId + '" target="_blank">Read More &gt;&gt;</a></p>'
+          output += '<p class="read-more"><a href="http://en.wikipedia.org/wiki?curid=' +  articleId + '" target="_blank">Read More &gt;&gt;</a></p></div>'
           document.getElementById('output').innerHTML = output;
           error: (errorMessage) ->
               console.log('No article found')

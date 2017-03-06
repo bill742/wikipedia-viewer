@@ -11,10 +11,11 @@ $grey: #aeadad
 
 // Responsive Widths
 $mobile: 600px
-$tablet: 1000px
+$tablet: 1200px
 
 // Mixins
 @mixin btn
+  display: block
   border: 1px solid $black
   border-radius: 4px
   padding: 0 20px
@@ -36,9 +37,7 @@ $tablet: 1000px
   float: right
 
 @mixin output
-  padding: 30px
   background-color: $white-more-transparent
-  border: 1px solid $black
 
 
 body
@@ -70,8 +69,17 @@ body
     h2
       padding-bottom: 30px
       font-size: $_22
+      line-height: 150%
       text-align: center
       color: $white
+
+  .error
+    position: absolute
+    padding: 20px 0
+    width: 100%
+    color: $red
+    font-weight: 700
+    text-align: center
 
   .search-container
     display: block
@@ -86,12 +94,11 @@ body
         width: 0
 
       100%
-        width: 448px
+        width: 50%
 
 
     .search-box
-      float: left
-      width: 50%
+      width: 85%
       padding: 6px 12px
       font-size: 1.1em
       border: 1px solid $grey
@@ -101,15 +108,35 @@ body
       animation-timing-function: ease
       animation-duration: 1s
 
+      @media (min-width: $mobile)
+        float: left
+        width: 65%
+
+      @media (min-width: $tablet)
+        width: 60%
+
+
     .search-btn
       @include btn
+      margin: 20px auto 0
+
+      @media (min-width: $mobile)
+        display: inline-block
+        margin: 0 0 0 10px
+
 
       .icon
         @include svg
 
     .random
       @include btn
-      display: inline-block
+      margin: 20px auto 0
+
+      @media (min-width: $tablet)
+        display: inline-block
+        float: right
+        margin: 0
+
 
     .random-btn
       @include svg
@@ -118,31 +145,30 @@ body
         color: $white
 
     .clear
-      position: relative
-      left: -20px
+      position: absolute
+      margin-left: -20px
       cursor: pointer
       color: $grey
+      line-height: 35px
 
-    .error
-      position: absolute
-      padding: 20px 0
-      width: 100%
-      color: $red
-      font-weight: 700
-      text-align: center
+      @media (min-width: $mobile)
+        position: relative
+
 
     // Output
   .output-visible
     @include output
     display: block
-    width: 80%
-    margin: 20px auto
 
   .output
+    width: 90%
+    margin: 20px auto
+
     .box
       @include output
-      width: 80%
       margin: 0 auto 10px
+      padding: 30px
+      border: 1px solid $black
 
     h3
       padding-bottom: 5px
