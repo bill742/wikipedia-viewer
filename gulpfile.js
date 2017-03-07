@@ -1,11 +1,11 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync'),
-    concat = require('gulp-concat');
-    uglify = require('gulp-uglify');
-    autoprefixer = require('gulp-autoprefixer');
-    concatCss = require('gulp-concat-css');
-    cleanCSS = require('gulp-clean-css');
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    autoprefixer = require('gulp-autoprefixer'),
+    concatCss = require('gulp-concat-css'),
+    cleanCSS = require('gulp-clean-css'),
     coffee = require('gulp-coffee');
 
 var sassSources,
